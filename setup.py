@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
  
-long_description = open('README.txt').read()
+long_description = open('README.md').read()
  
 setup(
     name='django-tagging_autocomplete',
