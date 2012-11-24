@@ -56,11 +56,15 @@ class TagAutocomplete(Input):
                 'tagging_autocomplete/css/tagging_autocomplete.css',
                 )
         }
+        js = []
+        if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY', False):
+            js.append(getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.6.2.min.js'))
+        if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY_UI', False):
+            js.extend([
+                'tagging_autocomplete/js/jquery.ui.core.min.js',
+                'tagging_autocomplete/js/jquery.ui.position.min.js',
+                'tagging_autocomplete/js/jquery.ui.widget.min.js',
+            ])            
+        js.append('tagging_autocomplete/js/jquery.ui.autocomplete.min.js')
 
-        js = (
-            getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.6.2.min.js'),
-            'tagging_autocomplete/js/jquery.ui.core.min.js',
-            'tagging_autocomplete/js/jquery.ui.position.min.js',
-            'tagging_autocomplete/js/jquery.ui.widget.min.js',
-            'tagging_autocomplete/js/jquery.ui.autocomplete.min.js',
-)
+
