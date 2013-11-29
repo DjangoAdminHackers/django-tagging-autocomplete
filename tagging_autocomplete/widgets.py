@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 class TagAutocomplete(Input):
     input_type = 'text'
-	
+
     def render(self, name, value, attrs=None):
         json_view = reverse('tagging_autocomplete-list')
         html = super(TagAutocomplete, self).render(name, value, attrs)
@@ -57,10 +57,13 @@ class TagAutocomplete(Input):
                 )
         }
 
-        js = (
-            getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.6.2.min.js'),
-            'tagging_autocomplete/js/jquery.ui.core.min.js',
-            'tagging_autocomplete/js/jquery.ui.position.min.js',
-            'tagging_autocomplete/js/jquery.ui.widget.min.js',
-            'tagging_autocomplete/js/jquery.ui.autocomplete.min.js',
-)
+        js = []
+        if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY', False):
+            js.append(getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.6.2.min.js'))
+
+        if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY_UI', False):
+            js.extend(['tagging_autocomplete/js/jquery.ui.core.min.js',
+                       'tagging_autocomplete/js/jquery.ui.position.min.js',
+                       'tagging_autocomplete/js/jquery.ui.widget.min.js',])
+
+        js.append('tagging_autocomplete/js/jquery.ui.autocomplete.min.js')
