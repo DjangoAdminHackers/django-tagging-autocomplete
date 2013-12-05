@@ -16,11 +16,11 @@ class TagAutocomplete(Input):
         function extractLast( term ) {
         return split( term ).pop();
         }
-        jQuery(function() {
 
+        jQuery(function() {
         jQuery("#%s").bind( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
-        $( this ).data( "autocomplete" ).menu.active ) {
+        $( this ).data( "ui-autocomplete" ).menu.active) {
         event.preventDefault();
         }
         }).autocomplete({
@@ -53,17 +53,17 @@ class TagAutocomplete(Input):
         css = {
             'all': (
                 'tagging_autocomplete/css/base/jquery.ui.all.css',
-                'tagging_autocomplete/css/tagging_autocomplete.css',
                 )
         }
 
         js = []
         if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY', False):
-            js.append(getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.6.2.min.js'))
+            js.append(getattr(settings,'JQUERY_URL','tagging_autocomplete/js/jquery-1.9.1.min.js'))
 
         if not getattr(settings,'AUTO_COMPLETE_NO_JQUERY_UI', False):
             js.extend(['tagging_autocomplete/js/jquery.ui.core.min.js',
+                       'tagging_autocomplete/js/jquery.ui.widget.min.js',
                        'tagging_autocomplete/js/jquery.ui.position.min.js',
-                       'tagging_autocomplete/js/jquery.ui.widget.min.js',])
+                       'tagging_autocomplete/js/jquery.ui.menu.min.js',])
 
         js.append('tagging_autocomplete/js/jquery.ui.autocomplete.min.js')
