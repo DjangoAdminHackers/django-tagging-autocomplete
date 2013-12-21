@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
- 
-long_description = open('README.md').read()
- 
+
+long_description = open('README.rst').read()
+
 setup(
     name='django-tagging_autocomplete',
     version='0.3.1',
@@ -29,4 +29,4 @@ setup(
             'static/tagging_autocomplete/css/base/images/*.png',
         ]
     },
-) 
+)
