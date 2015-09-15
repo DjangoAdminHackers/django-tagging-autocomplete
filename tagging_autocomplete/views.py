@@ -1,7 +1,12 @@
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 from tagging.models import Tag
-from django.utils import simplejson
+
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
+
 
 def list_tags(request):
     try:
